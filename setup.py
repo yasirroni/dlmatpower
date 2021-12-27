@@ -1,7 +1,6 @@
 from setuptools import setup
 from setuptools.command.install import install
 from setuptools.command.develop import develop
-from setuptools.command.egg_info import egg_info
 
 import os
 import re
@@ -16,36 +15,43 @@ version_line = open(os.path.join(current_path, PACKAGE_NAME, 'version.py'), "rt"
 m = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_line, re.M)
 __version__ = m.group(1)
 
-print(__version__)
-
 def post_install():
-    matpower_folder = "matpower"
     matpower_version = '7.1'
+    matpower_dir = 'matpower'
+    file_name = os.path.join(matpower_dir, "matpower.zip")
+    
+    if os.path.exists(file_name):
+        print("matpower.zip already exist in destionation.")
+        shutil.rmtree(file_name)
+    
     matpower_url = "https://github.com/MATPOWER/matpower/archive/refs/tags/" + matpower_version + ".zip"
-    file_name = os.path.join(matpower_folder, "matpower.zip")
 
     print("Downloading MATPOWER...")
     print(matpower_url)
     urllib.request.urlretrieve(matpower_url, file_name) # source, dest
 
-    shutil.unpack_archive(file_name, matpower_folder, 'zip')
-    os.rename(os.path.join(matpower_folder,'matpower-' + matpower_version), os.path.join(matpower_folder,'matpower'))
+    shutil.unpack_archive(file_name, matpower_dir, 'zip')
+    
+    os.remove(file_name) # remove zipfile
+    
+    default_matpower_dir = os.path.join(matpower_dir,'matpower-' + matpower_version)
 
-    os.remove(file_name)
-    pass
+    renamed_name = os.path.join(matpower_dir,'matpower')
+    if os.path.exists(renamed_name):
+        print("Matpower folder already exist in path")
+        shutil.rmtree(renamed_name)
+
+    os.rename(default_matpower_dir, renamed_name)
+    print(f"matpower saved on {renamed_name}")
 
 class CustomInstallCommand(install):
     def run(self):
-        print('CustomInstallCommand')
         install.run(self)
-        print('CustomInstallCommand_')
         post_install()
 
 class CustomDevelopCommand(develop):
     def run(self):
-        print('CustomDevelopCommand')
         develop.run(self)
-        print('CustomDevelopCommand_')
         post_install()
 
 setup(
@@ -59,13 +65,14 @@ setup(
     url = "https://gitlab.com/yasirroni/matpower-pip",
     package_data = {},
     classifiers = [
-        "Programming Language :: Python :: 3.7",
-        "Scientific Engineering :: Mathematics",
+        "Programming Language :: Python",
+        "Topic :: Scientific/Engineering"
     ],
-    cmdclass={
+    cmdclass = {
         'install': CustomInstallCommand,
         'develop': CustomDevelopCommand,
-        }
+        },
+    packages = ['matpower']
 )
 
 

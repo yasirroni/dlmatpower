@@ -4,6 +4,9 @@
 # Matpower
 matpower/matpower
 
+# Token
+.pypirc
+
 # Editor
 .vscode/
 

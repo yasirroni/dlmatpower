@@ -3,6 +3,7 @@
 
 # Matpower
 dlmatpower/matpower
+dlmatpower/matpower.zip
 
 # Token
 .pypirc

@@ -17,7 +17,7 @@ __version__ = m.group(1)
 
 def post_install():
     matpower_version = '7.1'
-    matpower_dir = 'matpower'
+    matpower_dir = 'dlmatpower'
     file_name = os.path.join(matpower_dir, "matpower.zip")
     
     if os.path.exists(file_name):

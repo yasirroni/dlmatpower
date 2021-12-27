@@ -8,7 +8,7 @@ import re
 import urllib
 import shutil
 
-PACKAGE_NAME = 'matpower'
+PACKAGE_NAME = 'dlmatpower'
 current_path = os.path.abspath(os.path.dirname(__file__))
 version_line = open(os.path.join(current_path, PACKAGE_NAME, 'version.py'), "rt").read()
 
@@ -62,7 +62,7 @@ setup(
     # description = "IBM CPLEX optimization tools implementation on electrical power system",
     # long_description = long_description,
     # long_description_content_type = "text/markdown",
-    url = "https://gitlab.com/yasirroni/matpower-pip",
+    url = "https://gitlab.com/yasirroni/dlmatpower",
     package_data = {},
     classifiers = [
         "Programming Language :: Python",
@@ -72,7 +72,7 @@ setup(
         'install': CustomInstallCommand,
         'develop': CustomDevelopCommand,
         },
-    packages = ['matpower']
+    packages = [PACKAGE_NAME]
 )
 
 

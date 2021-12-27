@@ -1,5 +1,10 @@
 # dlmatpower
 
+___
+
+**ARCHIVED!!!** See [matpower-pip](https://github.com/yasirroni/matpower-pip) for better approach of using pypi.
+
+___
 Make download [MATPOWER](https://github.com/MATPOWER/matpower) easier from pip.
 
 ## Usage

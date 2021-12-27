@@ -54,14 +54,17 @@ class CustomDevelopCommand(develop):
         develop.run(self)
         post_install()
 
+with open("README.md", "r") as f:
+    long_description = f.read()
+
 setup(
     name = PACKAGE_NAME,
     version = __version__, # versions '0.0.x' are unstable and subject to refactor
     author = "Muhammad Yasirroni",
     author_email = "muhammadyasirroni@gmail.com",
-    # description = "IBM CPLEX optimization tools implementation on electrical power system",
-    # long_description = long_description,
-    # long_description_content_type = "text/markdown",
+    description = "Make download MATPOWER easier from pip",
+    long_description = long_description,
+    long_description_content_type = "text/markdown",
     url = "https://gitlab.com/yasirroni/dlmatpower",
     package_data = {},
     classifiers = [

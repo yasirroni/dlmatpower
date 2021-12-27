@@ -2,7 +2,7 @@
 #  This template is based on: https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore
 
 # Matpower
-matpower/matpower
+dlmatpower/matpower
 
 # Token
 .pypirc

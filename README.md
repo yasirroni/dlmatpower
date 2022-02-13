@@ -5,6 +5,7 @@ ___
 **ARCHIVED!!!** See [matpower-pip](https://github.com/yasirroni/matpower-pip) for better approach of using pypi.
 
 ___
+
 Make download [MATPOWER](https://github.com/MATPOWER/matpower) easier from pip.
 
 ## Usage
@@ -31,4 +32,4 @@ dlmatpower.download()
 
 ## Note
 
-Downloaded MATPOWER on `dlmatpower/` will not be removed by `pip uninstall dlmatpower`. Use `downloader.delete_default_download()` to remove it.
+Downloaded MATPOWER on `dlmatpower/` will not be removed by `pip uninstall dlmatpower`. Use `downloader.delete_default_download()` to remove it or manually delete downloaded content on `dlmatpower/`.
